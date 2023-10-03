@@ -8,11 +8,11 @@ if (isset($_POST['login'])) {
 
     // Kiểm tra thông tin đăng nhập trong bảng 'admin'
     $sql = "SELECT * FROM admin WHERE username = '$username' AND password = '$password' LIMIT 1";
-    $account = pdo_query($sql);
+    $account = pdo_query_one($sql);
 
     // Kiểm tra thông tin đăng nhập trong bảng 'user'
     $user_sql = "SELECT * FROM user WHERE email = '$username' AND password = '$password' LIMIT 1";
-    $user_account = pdo_query($user_sql);
+    $user_account = pdo_query_one($user_sql);
 
     if ($account) {
         $_SESSION['login'] = $account;

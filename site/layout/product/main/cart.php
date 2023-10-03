@@ -12,8 +12,7 @@ if (isset($_POST['addproductdetails'])) {
 
     // Truy vấn để lấy thông tin sản phẩm từ cơ sở dữ liệu
     $sql = "SELECT * FROM product WHERE id_product = '$id' LIMIT 1";
-    $query = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_array($query);
+    $row = pdo_query_one($sql);
 
     if ($row) {
         // Tạo một mảng chứa thông tin sản phẩm mới

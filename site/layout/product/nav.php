@@ -1,15 +1,16 @@
 <?php
     $sql_category = "SELECT * FROM category ORDER BY stt ASC";
-    $query_category = mysqli_query($conn, $sql_category);
+    $query_category = pdo_query($sql_category);
 ?>
 
 <div class="nav-menu">
     <ul class="menu-list wraper">
         <?php
-            while($row_category = mysqli_fetch_array($query_category)) {
+            foreach($query_category as $row) {
+                extract($row);
         ?> 
         <li class="menu-item">
-            <a href="newproduct.php?menu=sanphamoi&id=<?= $row_category['id_category']; ?>" class="item-link"><?= $row_category['category_name']; ?></a>
+            <a href="newproduct.php?menu=sanphamoi&id=<?= $id_category; ?>" class="item-link"><?= $category_name; ?></a>
         </li>
         <?php } ?>
         <li class="menu-item">

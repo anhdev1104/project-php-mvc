@@ -1,5 +1,5 @@
 <?php 
-    include_once('../config/pdo.php'); 
+    include '../config/pdo.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -18,10 +18,10 @@
 <body>
     <div class="app">
         <?php
-            include('./layout/home/header.php');
-            include('./layout/home/slider.php');
-            include('./layout/home/main.php');
-            include('./layout/home/footer.php'); 
+            include './layout/home/header.php';
+            include './layout/home/slider.php';
+            include './layout/home/main.php';
+            include './layout/home/footer.php';
         ?>
     </div>
 

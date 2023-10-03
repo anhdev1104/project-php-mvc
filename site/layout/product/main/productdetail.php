@@ -1,29 +1,30 @@
 <?php
     $sql_details = "SELECT * FROM product, category WHERE product.category_id=category.id_category AND product.id_product='$_GET[id]' ORDER BY id_product LIMIT 1";
-    $query_details = mysqli_query($conn, $sql_details);
-    while($row_details = mysqli_fetch_array($query_details)) {
+    $query_details = pdo_query($sql_details);
+    foreach($query_details as $row) {
+        extract($row);
 ?>
 
 <section class="product-details">
-    <form action="layout/product/main/cart.php?idsanpham=<?= $row_details['id_product']; ?>" method="POST">
+    <form action="layout/product/main/cart.php?idsanpham=<?= $id_product; ?>" method="POST">
         <div class="breadcrumb">
             <a href="#!" class="breadcrumb-link">TRANG CHỦ</a>
-            <a href="#!" class="breadcrumb-link"><?= $row_details['category_name']; ?></a>
-            <a href="#!" class="breadcrumb-link"><?= $row_details['title']; ?></a>
+            <a href="#!" class="breadcrumb-link"><?= $category_name; ?></a>
+            <a href="#!" class="breadcrumb-link"><?= $title; ?></a>
         </div>
         <div class="main-details wraper">
             <div class="details-left">
                 <div class="details-box">
-                    <img src="../admin/modules/quanlyproduct/uploads/<?= $row_details['images']; ?>" alt="" class="details-img">
-                    <img src="../admin/modules/quanlyproduct/uploads/<?= $row_details['images_hover']; ?>" alt="" class="details-img-hover">
+                    <img src="../admin/modules/quanlyproduct/uploads/<?= $images; ?>" alt="" class="details-img">
+                    <img src="../admin/modules/quanlyproduct/uploads/<?= $images_hover; ?>" alt="" class="details-img-hover">
                 </div>
             </div>
             <div class="details-right">
-                <h2 class="details-title"><?= $row_details['title']; ?></h2>
-                <span class="details-quantity">SL KHO CÒN: <?= $row_details['quantity']; ?></span>
+                <h2 class="details-title"><?= $title; ?></h2>
+                <span class="details-quantity">SL KHO CÒN: <?= $quantity; ?></span>
                 <p class="details-price">
-                    <span class="current-price"><?= str_replace(',', '.', number_format($row_details['price'])).'đ'; ?></span>
-                    <span class="details-old-price"><?= str_replace(',', '.', number_format($row_details['old_price'])).'đ'; ?></span>
+                    <span class="current-price"><?= str_replace(',', '.', number_format($price)).'đ'; ?></span>
+                    <span class="details-old-price"><?= str_replace(',', '.', number_format($old_price)).'đ'; ?></span>
                 </p>
                 <p class="details-size">
                     SIZE :

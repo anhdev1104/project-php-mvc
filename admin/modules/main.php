@@ -32,9 +32,9 @@
     } 
     else if ($temp == 'customers' && $query == 'xemcustomers') {
         include 'modules/quanlycustomers/handle.php';
-    } 
-    else {
+    } else {
         include 'modules/dashboard.php';
     }
+
 ?> 
 

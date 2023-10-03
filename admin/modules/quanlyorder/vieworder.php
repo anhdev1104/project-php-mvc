@@ -1,6 +1,6 @@
 <?php 
     $sql_get_cart = "SELECT * FROM order_details, product WHERE order_details.id_product=product.id_product AND order_details.code_cart='$_GET[code]' ORDER BY order_details.id_orderdetails DESC";
-    $query_get_cart = mysqli_query($conn, $sql_get_cart);
+    $query_get_cart = pdo_query($sql_get_cart);
 ?>
 
 <div class="container mt-5">
@@ -21,17 +21,18 @@
             <?php
                 $i = 0;
                 $result = 0;
-                while($row = mysqli_fetch_array($query_get_cart)) {
+                foreach ($query_get_cart as $row) {
+                    extract($row);
                     $i++;
-                    $total = $row['price'] * $row['quantity_buy'];
+                    $total = $price * $quantity_buy;
                     $result += $total;
                 ?>
                     <tr>
                         <th scope="row"><?= $i; ?></th>
-                        <td><?= $row['code_cart']; ?></td>
-                        <td><?= $row['title']; ?></td>
-                        <td><?= str_replace(',', '.', number_format($row['price'])).'đ'; ?></td>
-                        <td><?= $row['quantity_buy']; ?></td>
+                        <td><?= $code_cart; ?></td>
+                        <td><?= $title; ?></td>
+                        <td><?= str_replace(',', '.', number_format($price)).'đ'; ?></td>
+                        <td><?= $quantity_buy; ?></td>
                         <td><?= str_replace(',', '.', number_format($total)).'đ'; ?></td>
 
                     </tr>

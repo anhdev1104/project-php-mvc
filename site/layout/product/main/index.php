@@ -14,17 +14,17 @@ if ($page == '' || $page == 1) {
 }
 
 $sql_product = "SELECT * FROM product WHERE product.category_id='$_GET[id]' ORDER BY id_product DESC LIMIT $begin, $limit";
-$query_product = mysqli_query($conn, $sql_product);
+$query_product = pdo_query($sql_product);
 // GET category_name 
 $sql_category = "SELECT * FROM category WHERE category.id_category = '$_GET[id]' LIMIT 1";
-$query_category = mysqli_query($conn, $sql_category);
-$row_title = mysqli_fetch_array($query_category);
+$query_category = pdo_query($sql_category);
+foreach ($query_category as $row_title) {
 ?>
 
 <form action="">
     <div class="list-product-head wraper">
         <div class="product-head-wrap wraper">
-            <p class="category-title"><?= $row_title['category_name']; ?></p>
+            <p class="category-title"><?= $row_title['category_name']; }?></p>
             <span>(486 Item)</span>
         </div>
         <div class="product-sort wraper">
@@ -35,7 +35,7 @@ $row_title = mysqli_fetch_array($query_category);
 
     <div class="product-list wraper">
         <?php
-        while ($row_product = mysqli_fetch_array($query_product)) {
+        foreach ($query_product as $row_product) {
             if ($row_product['statuser'] == 1) {
         ?>
                 <div class="product-item">
@@ -59,8 +59,8 @@ $row_title = mysqli_fetch_array($query_category);
 </form>
 
 <?php 
-    $sql_page = mysqli_query($conn, "SELECT * FROM product WHERE product.category_id='$_GET[id]'");
-    $row_page = mysqli_num_rows($sql_page);
+    $sql_page = "SELECT * FROM product WHERE product.category_id='$_GET[id]'";
+    $row_page = pdo_row_count($sql_page);
     $pages = ceil($row_page / $limit);
 ?>
 <div class="pagination"> 

@@ -26,6 +26,7 @@ function pdo_execute($sql) {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
         $stmt->execute($sql_args);
+        return $stmt;
     } catch(PDOException $e) {
         throw $e;
     } finally {
@@ -75,6 +76,22 @@ function pdo_query_value($sql) {
         $stmt->execute($sql_args);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return array_values($row)[0];
+    } catch(PDOException $e) {
+        throw $e;
+    } finally {
+        unset($conn);
+    }
+}
+
+// Truy vấn đếm số hàng
+function pdo_row_count($sql) {
+    $sql_args = array_slice(func_get_args(), 1);
+    try {
+        $conn = pdo_get_connection();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($sql_args);
+        $rowCount = $stmt->rowCount();
+        return $rowCount;
     } catch(PDOException $e) {
         throw $e;
     } finally {

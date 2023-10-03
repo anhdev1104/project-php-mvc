@@ -1,6 +1,6 @@
 <?php 
     $sql_get_customers = "SELECT * FROM user";
-    $sql_customers_query = mysqli_query($conn, $sql_get_customers);
+    $sql_customers_query = pdo_query($sql_get_customers);
 ?>
 
 
@@ -21,17 +21,18 @@
         </thead>
         <tbody>
             <?php
-            while ($row = mysqli_fetch_array($sql_customers_query)) {
+            foreach ($sql_customers_query as $row) {
+                extract($row);
             ?>
                 <tr>
-                    <th scope="row"><?= $row['id_user']; ?></th>
-                    <td><?= $row['fullname']; ?></td>
-                    <td><?= $row['email']; ?></td>
-                    <td><?= '0' . $row['phonenumber']; ?></td>
-                    <td style="width: 250px;"><?= $row['address']; ?></td>
-                    <td><?= $row['password']; ?></td>
+                    <th scope="row"><?= $id_user; ?></th>
+                    <td><?= $fullname; ?></td>
+                    <td><?= $email; ?></td>
+                    <td><?= '0' . $phonenumber; ?></td>
+                    <td style="width: 250px;"><?= $address; ?></td>
+                    <td><?= $password; ?></td>
                     <td>
-                        <a href="index.php?action=customers&query=xemcustomers&iduser=<?= $row['id_user'] ?>" class="nav-link btn btn-danger mx-2">DELETE</a>
+                        <a href="index.php?action=customers&query=xemcustomers&iduser=<?= $id_user ?>" class="nav-link btn btn-danger mx-2">DELETE</a>
                     </td>
                 </tr>
             <?php } ?>

@@ -1,6 +1,6 @@
 <?php
 $sql_get_cart = "SELECT * FROM cart_order, user WHERE cart_order.user_id=user.id_user ORDER BY cart_order.id_order DESC";
-$query_get_cart = mysqli_query($conn, $sql_get_cart);
+$query_get_cart = pdo_query($sql_get_cart);
 ?>
 
 <div class="container mt-5">
@@ -22,20 +22,21 @@ $query_get_cart = mysqli_query($conn, $sql_get_cart);
         <tbody>
             <?php
             $i = 0;
-            while ($row = mysqli_fetch_array($query_get_cart)) {
+            foreach ($query_get_cart as $row) {
+                extract($row);
                 $i++;
             ?>
                 <tr>
                     <th scope="row"><?= $i; ?></th>
-                    <td><?= $row['code_cart']; ?></td>
-                    <td><?= $row['fullname']; ?></td>
-                    <td style="width: 250px;"><?= $row['address']; ?></td>
-                    <td><?= $row['email']; ?></td>
-                    <td><?= '0' . $row['phonenumber']; ?></td>
+                    <td><?= $code_cart; ?></td>
+                    <td><?= $fullname; ?></td>
+                    <td style="width: 250px;"><?= $address; ?></td>
+                    <td><?= $email; ?></td>
+                    <td><?= '0' . $phonenumber; ?></td>
                     <td>
                         <select class="form-select" name="orderStatus">
                             <?php
-                            if ($row['order_status'] == 1) {
+                            if ($order_status == 1) {
                             ?>
                                 <option value="1" selected>Đơn hàng mới</option>
                                 <option value="0">Đã giao hàng</option>
@@ -48,7 +49,7 @@ $query_get_cart = mysqli_query($conn, $sql_get_cart);
                         </select>
                     </td>
                     <td>
-                        <a href="index.php?action=donhang&query=xemdonhang&code=<?= $row['code_cart']; ?>" class="nav-link btn btn-success mx-2">CHI TIẾT</a>
+                        <a href="index.php?action=donhang&query=xemdonhang&code=<?= $code_cart; ?>" class="nav-link btn btn-success mx-2">CHI TIẾT</a>
                     </td>
                 </tr>
             <?php } ?>
