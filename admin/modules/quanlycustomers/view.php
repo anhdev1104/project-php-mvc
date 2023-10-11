@@ -15,7 +15,6 @@
                 <th scope="col">Email</th>
                 <th scope="col">Số điện thoại</th>
                 <th scope="col">Địa chỉ</th>
-                <th scope="col">Mật khẩu mã hoá MD5</th>
                 <th scope="col">Quản lý</th>
             </tr>
         </thead>
@@ -30,7 +29,6 @@
                     <td><?= $email; ?></td>
                     <td><?= '0' . $phonenumber; ?></td>
                     <td style="width: 250px;"><?= $address; ?></td>
-                    <td><?= $password; ?></td>
                     <td>
                         <a href="index.php?action=customers&query=xemcustomers&iduser=<?= $id_user ?>" class="nav-link btn btn-danger mx-2">DELETE</a>
                     </td>
