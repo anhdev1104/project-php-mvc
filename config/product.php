@@ -28,4 +28,8 @@
     function view_product() {
         header('Location: ../../index.php?action=quanlysanpham&query=add');
     }
+
+    function random_product() {
+        return "SELECT * FROM product ORDER BY RAND() LIMIT 10";
+    }
 ?>

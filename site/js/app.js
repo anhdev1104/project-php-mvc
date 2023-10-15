@@ -14,7 +14,7 @@ window.addEventListener('load', function () {
     setInterval(autoSlide, 3000)
 })
 
-// favourite product
+// ===== favourite product ======
 const heartIcons = document.querySelectorAll('.heart-icon')
 
 function toggleHeart(event) {
@@ -34,7 +34,7 @@ heartIcons.forEach((heartIcon) => {
     heartIcon.addEventListener('click', toggleHeart);
 });
 
-//show box modal (tìm đúng kích thước)
+// ======= show box modal (tìm đúng kích thước) ========
 const modalSize = document.querySelector('#modal-size')
 const overlayModal = document.querySelector('#overlay')
 const closeIcon = document.querySelector('#close-icon')
@@ -51,9 +51,69 @@ closeIcon.addEventListener('click', () => {
 overlayModal.addEventListener('click', () => {
     overlayModal.style.display = 'none'
 })
+
 boxModal.addEventListener('click', (e) => {
     e.stopPropagation();
 })
 
+// ======== product details ========
+const btnPrev = document.querySelector('.btn-prev')
+const btnNext = document.querySelector('.btn-next')
+const listFavorite = document.querySelector('.favorite-list')
+const item = document.querySelector('.favorite-item')
+const itemWidth = item.offsetWidth
+
+let debounceTimeout
+function handleNextClick() {
+    if (debounceTimeout) {
+        clearTimeout(debounceTimeout)
+    }
+
+    debounceTimeout = setTimeout(() => {
+        listFavorite.scrollLeft += itemWidth
+    }, 200)
+}
+
+btnNext.parentElement.addEventListener('click', handleNextClick)
+
+function handlePrevClick() {
+    if (debounceTimeout) {
+        clearTimeout(debounceTimeout)
+    }
+
+    debounceTimeout = setTimeout(() => {
+        listFavorite.scrollLeft -= itemWidth
+    }, 200)
+}
+
+btnPrev.parentElement.addEventListener('click', handlePrevClick)
+
+
+listFavorite.addEventListener('wheel', function(e) {
+    e.preventDefault()
+    const delta = e.deltaY * 2.7
+    this.scrollLeft += delta
+})
+
+// ========= nav img product details =========
+const listImg = document.querySelectorAll('.details-item-img');
+const mainPhoto = document.querySelector('.details-img');
+
+[...listImg].forEach(item => {
+    item.addEventListener('click', function() {
+        [...listImg].forEach(item => item.classList.remove('active-img'))
+        this.classList.toggle('active-img')
+        mainPhoto.src = this.querySelector('img').src
+    })
+})
+
+// ======== toggle btn size =========
+const btnSizes = document.querySelectorAll('.item-option');
+[...btnSizes].forEach(item => {
+    item.addEventListener('click', function() {
+        [...btnSizes].forEach(item => item.classList.remove('item-option-active'))
+        this.classList.toggle('item-option-active')
+    })
+})
 
 
