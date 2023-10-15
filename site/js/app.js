@@ -12,6 +12,13 @@ window.addEventListener('load', function () {
     }
 
     setInterval(autoSlide, 3000)
+
+    // ======== toggle search =========
+    const search = document.querySelector('#search')
+    const searchBlock = document.querySelector('.search-block')
+    
+    search.addEventListener('click', () => searchBlock.classList.toggle('active-search'))
+    searchBlock.addEventListener('click', (e) => e.stopPropagation())
 })
 
 // ===== favourite product ======
@@ -73,7 +80,6 @@ function handleNextClick() {
         listFavorite.scrollLeft += itemWidth
     }, 200)
 }
-
 btnNext.parentElement.addEventListener('click', handleNextClick)
 
 function handlePrevClick() {
@@ -85,9 +91,7 @@ function handlePrevClick() {
         listFavorite.scrollLeft -= itemWidth
     }, 200)
 }
-
 btnPrev.parentElement.addEventListener('click', handlePrevClick)
-
 
 listFavorite.addEventListener('wheel', function(e) {
     e.preventDefault()
@@ -115,5 +119,7 @@ const btnSizes = document.querySelectorAll('.item-option');
         this.classList.toggle('item-option-active')
     })
 })
+
+
 
 

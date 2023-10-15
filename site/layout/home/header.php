@@ -33,11 +33,17 @@
                     <?= (isset($_SESSION['register']) || isset($_SESSION['login_user'])) ? '<a href="index.php?dangxuatuser=1" class="page-logout">Đăng xuất</a>' : '' ?>
                 </div>
                 
-
-                <div class="above-item wraper">
+                <div class="above-item header_search wraper" id="search">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <span>Tìm kiếm</span>
+                    <div class="search-block ">
+                        <form action="#" class="search-form">
+                            <input type="text" class="search-input" placeholder="Nhập từ khoá tìm kiếm">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        </form>
+                    </div>
                 </div>
+
                 <div class="above-item wraper">VN</div>
                 <div class="above-item wraper">EN</div>
                 <a title="Giỏ hàng" href="viewcart.php" class="above-item wraper">
