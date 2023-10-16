@@ -36,10 +36,10 @@
                 <div class="above-item header_search wraper" id="search">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <span>Tìm kiếm</span>
-                    <div class="search-block ">
-                        <form action="#" class="search-form">
-                            <input type="text" class="search-input" placeholder="Nhập từ khoá tìm kiếm">
-                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <div class="search-block">
+                        <form action="newproduct.php" name="" method="POST" class="search-form">
+                            <input type="text" class="search-input" name="search-item" placeholder="Nhập từ khoá tìm kiếm">
+                            <button type="submit"><i class="fa-solid fa-magnifying-glass search-icon"></i></button>
                         </form>
                     </div>
                 </div>

@@ -68,6 +68,7 @@ foreach ($query_details as $row) {
                     <div class="details-description">
                         <h3 class="description-tile">CHI TIẾT SẢN PHẨM</h3>
                         <p class="descripton-content">Hoa Poppy – loài hoa gây nghiện và sở hữu trong mình nét đẹp tiềm tàng. Sở hữu ngay làn gió mới với họa tiết hoa Poppy thuộc BST Colorfull Poppy của SIXDO ngay thôi!</p>
+                        <p class="descripton-content"><?= $descript ?></p>
                     </div>
                 </div>
             </div>
