@@ -1,5 +1,6 @@
 <?php
 include "../config/product.php";
+include "../config/comment.php";
 $sql_details = "SELECT * FROM product, category WHERE product.category_id=category.id_category AND product.id_product='$_GET[id]' ORDER BY id_product LIMIT 1";
 $query_details = pdo_query($sql_details);
 foreach ($query_details as $row) {
@@ -74,6 +75,54 @@ foreach ($query_details as $row) {
             </div>
         </form>
     </section>
+
+    <div class="details-comment">
+        <div class="comment-heading">ĐÁNH GIÁ SẢN PHẨM</div>
+        <form action="" method="POST" class="comment-form">
+            <div class="form-control">
+                <input type="hidden" name="product_id_comment" value="<?= $id_product ?>">
+                <?php
+                $name_user_comment = $_SESSION['login_user'] ?? '';
+                $name_register_comment = $_SESSION['register'] ?? '';
+                ?>
+                <input type="hidden" name="name_user_comment" value="<?php
+                    if ($name_user_comment) {
+                        echo $name_user_comment;
+                    } else if ($name_register_comment) {
+                        echo $name_register_comment;
+                    } else {
+                        echo "";
+                    }
+                    ?>">
+                <input type="text" class="comment-input" name="comment" placeholder="Comment">
+                <button type="submit" name="submit_comment" class="comment-submit" title="Gửi"><i class="fa-regular fa-paper-plane"></i></button>
+            </div>
+        </form>
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'])) {
+                $comment = insert_comment();
+                if ($comment === 'comment_required') {
+            ?>
+                    <script>
+                        alert('Vui lòng đăng nhập để đánh giá sản phẩm !');
+                    </script>
+                <?php }
+                ?>
+
+                
+            <?php 
+            } 
+            $sql = select_comment();
+                $rows = pdo_query($sql);
+                foreach ($rows as $row) { 
+                    extract($row);
+                    ?>
+        <div class="comment-user">
+        <h2 class="comment-name"><?= $fullname ?></h2>
+        <p class="comment-note"><?= $note ?></p>
+        </div>
+    <?php } ?>
+    </div>
 <?php } ?>
 
 <section class="favorite-product">
@@ -92,18 +141,18 @@ foreach ($query_details as $row) {
     <div class="main-favorite wraper">
         <div class="favorite-list wraper">
             <?php
-                $sql = random_product();
-                $sql_ramdom = pdo_query($sql);
-                foreach ($sql_ramdom as $ramdom) {
-                    extract($ramdom);
+            $sql = random_product();
+            $sql_ramdom = pdo_query($sql);
+            foreach ($sql_ramdom as $ramdom) {
+                extract($ramdom);
             ?>
-            <div class="favorite-item">
-                <a href="newproduct.php?menu=chitietsanpham&id=<?= $id_product; ?>" class="favorite-link-item">
-                    <img src="../admin/modules/quanlyproduct/uploads/<?= $images ?>" alt="" class="favorite-img">
-                </a>
-                <h3 class="favorite-title"><?= $title ?></h3>
-                <p class="favorite-price"><?= str_replace(',', '.', number_format($price)) . 'VNĐ'; ?></p>
-            </div>
+                <div class="favorite-item">
+                    <a href="newproduct.php?menu=chitietsanpham&id=<?= $id_product; ?>" class="favorite-link-item">
+                        <img src="../admin/modules/quanlyproduct/uploads/<?= $images ?>" alt="" class="favorite-img">
+                    </a>
+                    <h3 class="favorite-title"><?= $title ?></h3>
+                    <p class="favorite-price"><?= str_replace(',', '.', number_format($price)) . 'VNĐ'; ?></p>
+                </div>
             <?php } ?>
         </div>
     </div>

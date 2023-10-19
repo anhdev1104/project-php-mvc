@@ -30,7 +30,7 @@
                     <td><?= '0' . $phonenumber; ?></td>
                     <td style="width: 250px;"><?= $address; ?></td>
                     <td>
-                        <a href="index.php?action=customers&query=xemcustomers&iduser=<?= $id_user ?>" class="nav-link btn btn-danger mx-2">DELETE</a>
+                        <a href="index.php?action=customers&query=xemcustomers&iduser=<?= $id_user ?>" class="nav-link btn btn-danger mx-2" onclick="return confirm('Bạn chắc chắn muốn xoá ?')">DELETE</a>
                     </td>
                 </tr>
             <?php } ?>

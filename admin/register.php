@@ -10,11 +10,11 @@
         $password_user = md5($_POST['password']);
 
         $sql_register = "INSERT INTO user(fullname, email, phonenumber, address, password) VALUE ('$name_user', '$email_user', '$phone_user', '$address_user', '$password_user')";
-        $query_register = mysqli_query($conn, $sql_register);
+        $query_register = pdo_execute($sql_register);
 
         if ($query_register) {
             $_SESSION['register'] = $name_user;
-            $_SESSION['id_user'] = mysqli_insert_id($conn);
+            $_SESSION['id_user'] = pdo_get_connection()->lastInsertId();
             header('Location: ../site/index.php');
         }
     }

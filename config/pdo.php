@@ -8,7 +8,7 @@ function pdo_get_connection() {
 
     try {
         // Kết nối vào cơ sở dữ liệu bằng PDO
-        $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
 
         // Thiết lập chế độ lấy dữ liệu trả về là mảng kết hợp (associative array)
         $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);

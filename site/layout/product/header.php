@@ -39,7 +39,7 @@ if (isset($_GET['dangxuatuser']) && $_GET['dangxuatuser'] == 1) {
                     <div class="search-block ">
                         <form action="newproduct.php" name="" method="POST" class="search-form">
                             <input type="text" class="search-input" name="search-item" placeholder="Nhập từ khoá tìm kiếm">
-                            <button type="submit"><i class="fa-solid fa-magnifying-glass search-icon"></i></button>
+                            <button type="submit" name="submit-search"><i class="fa-solid fa-magnifying-glass search-icon"></i></button>
                         </form>
                     </div>
                 </div>
@@ -57,7 +57,7 @@ if (isset($_GET['dangxuatuser']) && $_GET['dangxuatuser'] == 1) {
 
 
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit-search'])) {
     $item = $_POST['search-item'];
 } else {
     $item = '';

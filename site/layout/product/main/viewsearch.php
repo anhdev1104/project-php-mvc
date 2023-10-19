@@ -1,6 +1,7 @@
 <?php
+
 // Lấy dữ liệu từ form
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit-search'])) {
     $item = $_POST['search-item'];
 
     // Truy vấn cơ sở dữ liệu
@@ -15,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php
             foreach ($result as $row) { ?>
                 <div class="product-item2">
-                    <a href="" class="product-link2">
+                    <a href="newproduct.php?menu=chitietsanpham&id=<?= $row['id_product']; ?>" class="product-link2">
                         <img src="../admin/modules/quanlyproduct/uploads/<?= $row['images'] ?>" alt="" class="product-img2">
                         <img src="../admin/modules/quanlyproduct/uploads/<?= $row['images_hover'] ?>" alt="" class="product-img-hover2">
                     </a>
