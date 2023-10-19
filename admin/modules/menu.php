@@ -34,6 +34,9 @@
                     <a class="nav-link" href="index.php?action=quanlykhachhang&query=lietke">Customers</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="index.php?action=quanlythongke&query=lietke">Statistical</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="index.php?dangxuat=1">Logout</a>
                 </li>
             </ul>

@@ -32,6 +32,8 @@
     } 
     else if ($temp == 'customers' && $query == 'xemcustomers') {
         include 'modules/quanlycustomers/handle.php';
+    } else if ($temp == 'quanlythongke' && $query == 'lietke') { // quản lý thống kê
+        include 'modules/quanlystatistical/view.php';
     } else {
         include 'modules/dashboard.php';
     }
