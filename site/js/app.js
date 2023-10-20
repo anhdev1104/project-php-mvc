@@ -104,7 +104,7 @@ btnPrev.parentElement.addEventListener('click', handlePrevClick)
 
 listFavorite.addEventListener('wheel', function(e) {
     e.preventDefault()
-    const delta = e.deltaY * 2.7
+    const delta = e.deltaY * 3.4
     this.scrollLeft += delta
 })
 

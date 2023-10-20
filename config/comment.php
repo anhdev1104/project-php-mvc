@@ -4,7 +4,9 @@
         $product_id = $_POST['product_id_comment'];
         $name_user_comment = $_POST['name_user_comment'];
 
-        if ($name_user_comment === '' || $comment === '') {
+        if ($name_user_comment === '') {
+            return "login_required";
+        } elseif ($comment === '') {
             return "comment_required";
         } else {
             $querry = "INSERT INTO comment(note, product_id, fullname) VALUES('$comment', '$product_id', '$name_user_comment')";

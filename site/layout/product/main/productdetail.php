@@ -101,14 +101,16 @@ foreach ($query_details as $row) {
             <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'])) {
                 $comment = insert_comment();
-                if ($comment === 'comment_required') {
+                if ($comment === 'login_required') {
             ?>
-                    <script>
-                        alert('Vui lòng đăng nhập để đánh giá sản phẩm !');
-                    </script>
-                <?php }
-                ?>
-
+                <script>
+                    alert('Vui lòng đăng nhập để đánh giá sản phẩm !');
+                </script>
+                <?php } else if ($comment === 'comment_required') { ?>
+                <script>
+                    alert('Không được để bình luận trống !');
+                </script>
+                <?php } ?>
                 
             <?php 
             } 
