@@ -1,7 +1,7 @@
 # project-php-mvc
 link website: https://anhdev.id.vn/
 
-admin
+tk đăng nhập admin:
 
 anhbhpd08263@fpt.edu.vn
 
