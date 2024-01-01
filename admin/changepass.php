@@ -13,7 +13,7 @@ if (isset($_POST['changepass'])) {
     $user_account = mysqli_fetch_array($user_result);
     
     if ($user_account) {
-        $sql_update = mysqli_query($conn, "UPDATE user SET password = '$password_new' LIMIT 1");
+        $sql_update = mysqli_query($conn, "UPDATE user SET password = '$password_new' WHERE email = '$username' AND password = '$password_old' LIMIT 1");
 
         echo "<script>alert('Tạo lại mật khẩu thành công !')</script>";
     } else {
